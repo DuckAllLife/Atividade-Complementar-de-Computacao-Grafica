@@ -21,19 +21,15 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x333333);
 document.body.appendChild(renderer.domElement);
 
-// ========== ILUMINAÇÃO ========== //
-
-// Luz Direcional (simulando o sol - De cima)
+// Luz Direcional (Simulando a luz do sol - Iluminação De cima)
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 directionalLight.position.set(1, 1, 1);
 scene.add(directionalLight);
 
-// Luz Pontual (como uma lâmpada - deixando mais Claro no Objeto)
+// Luz Pontual (Simulando uma lâmpada - Deixando mais Claro no Objeto)
 const pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
 pointLight.position.set(0, 5, 5);
 scene.add(pointLight);
-
-// Objetos 3D 
 
 // MeshPhongMaterial é a função que aceita o objeto ser Refletido por alguma iluminação
 const objectSphere = new THREE.MeshPhongMaterial({ 
@@ -61,7 +57,7 @@ const cube = new THREE.Mesh(cubeGeometry, objectCube);
 cube.position.set(0, 0, 0);
 scene.add(cube); //Nesse caso, como não foi definido a posição do Cubo, ele será adicioando ao centro do Cenário, é o padrão do scene.add()
 
-// Criando e Posicionando oCilindro
+// Criando e Posicionando o Cilindro
 const cylinderGeometry = new THREE.CylinderGeometry(0.6, 0.6, 1.5, 32);  //1º Raio da Face de Cima do Cilindro, 2º Raio da Face de Baixo Cilindro, 3º Altura do Cilindro e 4º 
 const cylinder = new THREE.Mesh(cylinderGeometry, objectCilynder);
 cylinder.position.set(4, 0, 0);
@@ -123,7 +119,7 @@ document.querySelectorAll('.object-btn').forEach(btn => {
 });
 
 // Função para Tratar as Transformações
-//ual tecla foi pressionada, e o que cada tecla irá fazer
+//Qual tecla foi pressionada, e o que cada tecla irá fazer
 function handleTransformations() {
 
 // Configuração dos botões
@@ -147,10 +143,9 @@ function handleTransformations() {
     if (keyStates['e']) activeObject.scale.multiplyScalar(scaleSpeed);
     
     // Resetar as Transfomações Aplicadas no Objeto (R)
-    // Resetar as Transfomações Aplicadas no Objeto (R)
     if (keyStates['r']) {
         activeObject.rotation.set(0, 0, 0);
-        // Corrigindo a Posição dO Reset Baseada no Objeto Ativo no Momento
+        // Corrigindo a Posição do Reset Baseada no Objeto Ativo no Momento
         if (activeObject === sphere) {
             activeObject.position.set(-4, 0, 0);
         } else if (activeObject === cube) {
